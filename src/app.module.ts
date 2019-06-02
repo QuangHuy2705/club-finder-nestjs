@@ -6,10 +6,16 @@ import { mongoURI } from './config/keys'
 import { PostsModule } from './posts/posts.module';
 import { PostsController } from './posts/posts.controller';
 import { PostsService } from './posts/posts.service';
+import { AuthController } from './auth/auth.controller';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { AuthService } from './auth/auth.service';
+import { UsersService } from './users/users.service';
+import { UsersController } from './users/users.controller';
 
 @Module({
-  imports: [PostsModule, MongooseModule.forRoot(mongoURI)],
-  controllers: [AppController, PostsController],
-  providers: [AppService, PostsService],
+  imports: [AuthModule, PostsModule, UsersModule, MongooseModule.forRoot(mongoURI)],
+  controllers: [AppController, PostsController, AuthController, UsersController],
+  providers: [AppService, PostsService, AuthService, UsersService],
 })
 export class AppModule {}
